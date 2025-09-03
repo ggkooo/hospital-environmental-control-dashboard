@@ -12,3 +12,12 @@ Route::get('/', function () {
         'page' => 'home',
     ]);
 });
+
+Route::post('/lang/change', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+    $availableLocales = config('app.supported_locales', []);
+    if (in_array($locale, $availableLocales)) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.change');
