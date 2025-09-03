@@ -11,5 +11,5 @@ return [
     'report_generation' => 'Report Generation',
     'access_control' => 'Access Control',
     'user_name' => 'User Name',
-    'leave' => 'Leave',
+    'leave' => 'Logout',
 ];

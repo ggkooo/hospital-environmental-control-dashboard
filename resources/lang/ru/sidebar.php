@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'temperature' => 'Temperature',
-    'humidity' => 'Humidity',
-    'noise' => 'Noise',
-    'report' => 'Report',
-    'administration' => 'Administration',
-    'user_management' => 'User Management',
-    'report_generation' => 'Report Generation',
-    'access_control' => 'Access Control',
-    'user_name' => 'User Name',
-    'leave' => 'Leave',
+    'home' => 'Главная',
+    'temperature' => 'Температура',
+    'humidity' => 'Влажность',
+    'noise' => 'Шум',
+    'report' => 'Отчёт',
+    'administration' => 'Администрирование',
+    'user_management' => 'Управление пользователями',
+    'report_generation' => 'Создание отчётов',
+    'access_control' => 'Контроль доступа',
+    'user_name' => 'Имя пользователя',
+    'leave' => 'Выйти',
 ];

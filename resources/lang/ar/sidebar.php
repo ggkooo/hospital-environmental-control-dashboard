@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'temperature' => 'Temperature',
-    'humidity' => 'Humidity',
-    'noise' => 'Noise',
-    'report' => 'Report',
-    'administration' => 'Administration',
-    'user_management' => 'User Management',
-    'report_generation' => 'Report Generation',
-    'access_control' => 'Access Control',
-    'user_name' => 'User Name',
-    'leave' => 'Leave',
+    'home' => 'الرئيسية',
+    'temperature' => 'درجة الحرارة',
+    'humidity' => 'الرطوبة',
+    'noise' => 'الضوضاء',
+    'report' => 'تقرير',
+    'administration' => 'الإدارة',
+    'user_management' => 'إدارة المستخدمين',
+    'report_generation' => 'إنشاء التقارير',
+    'access_control' => 'التحكم في الوصول',
+    'user_name' => 'اسم المستخدم',
+    'leave' => 'تسجيل الخروج',
 ];
+
