@@ -2,34 +2,48 @@
     <header class="navbar navbar-light bg-white border-bottom shadow-sm px-4 py-2 d-flex align-items-center" style="height: 10vh;">
         <span class="navbar-brand mb-0 h1"><img src="{{ asset('/assets/images/hospital-logo.png') }}" width="160px" alt=""></span>
         <div class="ms-auto">
-            <select class="selectpicker" id="languageSelect" style="width: 170px;" data-width="170px">
-                <option value="pt-br" data-content='<span class="fi fi-br"></span> PT-BR'>PT-BR</option>
-                <option value="en" data-content='<span class="fi fi-us"></span> EN' selected>EN</option>
-                <option value="es" data-content='<span class="fi fi-es"></span> ES'>ES</option>
-                <option value="de" data-content='<span class="fi fi-de"></span> DE'>DE</option>
-                <option value="it" data-content='<span class="fi fi-it"></span> IT'>IT</option>
-                <option value="ru" data-content='<span class="fi fi-ru"></span> RU'>RU</option>
-                <option value="hi" data-content='<span class="fi fi-in"></span> HI'>HI</option>
-                <option value="ar" data-content='<span class="fi fi-sa"></span> AR'>AR</option>
-                <option value="fr" data-content='<span class="fi fi-fr"></span> FR'>FR</option>
-                <option value="zh" data-content='<span class="fi fi-cn"></span> ZH'>ZH</option>
-                <option value="ja" data-content='<span class="fi fi-jp"></span> JA'>JA</option>
-                <option value="ko" data-content='<span class="fi fi-kr"></span> KO'>KO</option>
-            </select>
+            <form id="langFormHeader" action="/lang/change" method="POST" style="display:inline-block;">
+                @csrf
+                @php
+                    $localeMap = [
+                        'ar' => ['name' => 'AR', 'flag' => 'sa'],
+                        'de' => ['name' => 'DE', 'flag' => 'de'],
+                        'en' => ['name' => 'EN', 'flag' => 'us'],
+                        'es' => ['name' => 'ES', 'flag' => 'es'],
+                        'fr' => ['name' => 'FR', 'flag' => 'fr'],
+                        'hi' => ['name' => 'HI', 'flag' => 'in'],
+                        'it' => ['name' => 'IT', 'flag' => 'it'],
+                        'ja' => ['name' => 'JA', 'flag' => 'jp'],
+                        'ko' => ['name' => 'KO', 'flag' => 'kr'],
+                        'pt-br' => ['name' => 'PT-BR', 'flag' => 'br'],
+                        'ru' => ['name' => 'RU', 'flag' => 'ru'],
+                        'zh' => ['name' => 'ZH', 'flag' => 'cn'],
+                    ];
+                    $supportedLocales = config('app.supported_locales', []);
+                @endphp
+                <select class="selectpicker" id="languageSelect" name="locale" style="width: 170px;" data-width="170px">
+                    @foreach($supportedLocales as $locale)
+                        @php $info = $localeMap[$locale] ?? ['name' => strtoupper($locale), 'flag' => $locale]; @endphp
+                        <option value="{{ $locale }}" data-content='<span class="fi fi-{{ $info['flag'] }}"></span> {{ $info['name'] }}' {{ app()->getLocale() == $locale ? 'selected' : '' }}>{{ $info['name'] }}</option>
+                    @endforeach
+                </select>
+            </form>
         </div>
     </header>
     <script>
         $(function() {
             $('.selectpicker').selectpicker();
-            var savedLang = localStorage.getItem('language');
-            if (savedLang) {
-                $('#languageSelect').selectpicker('val', savedLang);
-            }
-            // Salva o idioma no localStorage ao alterar
-            $('#languageSelect').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            // Ao mudar o idioma, envia o formulário por AJAX e recarrega a página
+            $('#languageSelect').on('changed.bs.select', function () {
                 var selectedLang = $(this).val();
-                localStorage.setItem('language', selectedLang);
-                // location.reload(); // Removido para não recarregar a página
+                var token = document.querySelector('#langFormHeader input[name=_token]').value;
+                $.post({
+                    url: '/lang/change',
+                    data: { locale: selectedLang, _token: token },
+                    success: function() {
+                        window.location.reload();
+                    }
+                });
             });
         });
     </script>
