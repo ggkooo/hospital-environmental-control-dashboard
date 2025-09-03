@@ -28,15 +28,15 @@
         font-weight: 600;
     }
     .sidebar-nav .dropdown-menu {
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        font-size: 14px;
+        background-color: transparent;
+        font-size: 12px;
         border: none;
         padding-left: 0;
     }
     .sidebar-nav .dropdown-item {
         border-radius: 8px;
         margin-left: 16px;
+        margin-right: -24px;
         display: block;
         padding: 0.75rem 1rem;
         color: #333;
@@ -58,7 +58,7 @@
         font-size: 14px;
     }
 </style>
-<aside class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end" style="width: 200px; height: calc(100vh - 10vh);">
+<aside class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end" style="width: 225px; height: calc(100vh - 10vh);">
     <nav class="flex-grow-1">
         <ul class="sidebar-nav">
             <li class="nav-item"><a href="/" class="nav-link{{ request()->is('/') ? ' active' : '' }}">{{ __('sidebar.home') }}</a></li>

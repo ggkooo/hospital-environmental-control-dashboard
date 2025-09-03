@@ -1,4 +1,4 @@
-<footer class="bg-white border-top text-center py-2 small text-muted fixed-bottom d-flex align-items-center justify-content-center" style="margin-left:200px;">
+<footer class="bg-white border-top text-center py-2 small text-muted fixed-bottom d-flex align-items-center justify-content-center" style="margin-left:225px;">
     &copy; {{ date('Y') }} Giordano Bruno Biasi Berwig
 </footer>
 <script>
