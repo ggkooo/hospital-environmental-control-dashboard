@@ -1,7 +1,9 @@
+<link rel="stylesheet" href="{{ asset('css/layout/header.css') }}">
+
 <body>
-    <header class="navbar navbar-light bg-white border-bottom shadow-sm px-4 py-2 d-flex align-items-center" style="height: 10vh;">
-        <span class="navbar-brand mb-0 h1"><img src="{{ asset('/assets/images/hospital-logo.png') }}" width="160px" alt=""></span>
-        <div class="ms-auto">
+    <header class="header">
+        <span class="header__logo"><img src="{{ asset('/assets/images/hospital-logo.png') }}" alt="Hospital Environmental Control"></span>
+        <div class="header__lang-form">
             <form id="langFormHeader" action="/lang/change" method="POST" style="display:inline-block;">
                 @csrf
                 @php
@@ -21,7 +23,7 @@
                     ];
                     $supportedLocales = config('app.supported_locales', []);
                 @endphp
-                <select class="selectpicker" id="languageSelect" name="locale" style="width: 170px;" data-width="170px">
+                <select class="selectpicker" id="languageSelect" name="locale">
                     @foreach($supportedLocales as $locale)
                         @php $info = $localeMap[$locale] ?? ['name' => strtoupper($locale), 'flag' => $locale]; @endphp
                         <option value="{{ $locale }}" data-content='<span class="fi fi-{{ $info['flag'] }}"></span> {{ $info['name'] }}' {{ app()->getLocale() == $locale ? 'selected' : '' }}>{{ $info['name'] }}</option>
@@ -30,21 +32,5 @@
             </form>
         </div>
     </header>
-    <script>
-        $(function() {
-            $('.selectpicker').selectpicker();
-            // Ao mudar o idioma, envia o formulário por AJAX e recarrega a página
-            $('#languageSelect').on('changed.bs.select', function () {
-                var selectedLang = $(this).val();
-                var token = document.querySelector('#langFormHeader input[name=_token]').value;
-                $.post({
-                    url: '/lang/change',
-                    data: { locale: selectedLang, _token: token },
-                    success: function() {
-                        window.location.reload();
-                    }
-                });
-            });
-        });
-    </script>
-</body>
+    
+    <script src="{{ asset('js/layout/header.js') }}"></script>

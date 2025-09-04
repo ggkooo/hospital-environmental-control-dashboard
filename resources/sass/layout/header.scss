@@ -1,0 +1,23 @@
+// Estilos para o header
+.header {
+    height: 10vh;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+        img {
+            width: 160px;
+        }
+    }
+
+    &__lang-form {
+        margin-left: auto;
+        .selectpicker {
+            width: 120px !important;
+        }
+    }
+}
