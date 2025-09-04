@@ -1,0 +1,38 @@
+.header {
+    height: 10vh;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+        img {
+            width: 160px;
+        }
+    }
+
+    &__lang-form {
+        margin-left: auto;
+        .selectpicker {
+            width: 120px !important;
+        }
+    }
+}
+
+#sidebarHamburger {
+  background: none !important;
+  border: none;
+  color: #007bff;
+  box-shadow: none;
+  &:active,
+  &:focus {
+    background: none !important;
+    box-shadow: none !important;
+    outline: none;
+  }
+  i {
+    color: #007bff !important;
+  }
+}

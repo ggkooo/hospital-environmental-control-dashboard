@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -84,6 +83,11 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+    'supported_locales' => [
+        'ar', 'de', 'en', 'es', 'fr', 'hi', 'it', 'ja', 'ko', 'pt-br', 'ru', 'zh',
+        'tr', 'nl', 'pl', 'sv', 'uk'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -122,5 +126,4 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
 ];
