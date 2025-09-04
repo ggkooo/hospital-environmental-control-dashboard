@@ -10,4 +10,8 @@ mix.js('resources/js/app.js', 'public/js')
     
     // HEADER
     .js('resources/js/layout/header.js', 'public/js/layout')
-    .sass('resources/sass/layout/header.scss', 'public/css/layout');
+    .sass('resources/sass/layout/header.scss', 'public/css/layout')
+    
+    // FOOTER
+    .js('resources/js/layout/footer.js', 'public/js/layout')
+    .sass('resources/sass/layout/footer.scss', 'public/css/layout');
