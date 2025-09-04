@@ -14,4 +14,8 @@ mix.js('resources/js/app.js', 'public/js')
     
     // FOOTER
     .js('resources/js/layout/footer.js', 'public/js/layout')
-    .sass('resources/sass/layout/footer.scss', 'public/css/layout');
+    .sass('resources/sass/layout/footer.scss', 'public/css/layout')
+    
+    // HOME
+    //.js('resources/js/home/home.js', 'public/js/home')
+    .sass('resources/sass/pages/home.scss', 'public/css/pages');

@@ -1,0 +1,43 @@
+// Estilos para a página Home
+.card-info {
+  width: 260px;
+  min-height: 180px;
+  max-width: 260px;
+  max-height: 180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Garante espaçamento entre topo, meio e base
+  align-items: center;
+  position: relative;
+}
+
+.card-info .card-title {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.card-info .display-4 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  margin-bottom: 12px; // Adiciona margem inferior para separar da data
+}
+
+.card-info .text-info {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.card-info small {
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
