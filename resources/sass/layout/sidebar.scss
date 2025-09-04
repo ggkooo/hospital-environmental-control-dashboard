@@ -1,4 +1,3 @@
-// Sidebar
 aside {
   &.d-flex {
     nav.flex-grow-1 {
@@ -97,10 +96,10 @@ aside {
       border: 1px solid #eee;
       z-index: 100;
       position: absolute;
-      right: auto;
+      left: calc(100% + 24px);
       top: auto;
-      bottom: calc(0% + 12px); // sobe mais o dropdown
-      left: calc(100% + 24px); // aumenta a distância da sidebar
+      bottom: calc(0% + 12px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       display: none;
 
       a {
@@ -138,4 +137,51 @@ aside {
 
 .sidebar-user-toggle {
   cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+  #sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100vh;
+    z-index: 1050;
+    background: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+    transition: left 0.3s;
+    width: 255px;
+    display: block;
+  }
+  #sidebar.sidebar-open {
+    left: 0;
+  }
+
+  aside.d-flex .sidebar-user-dropdown {
+    position: absolute !important;
+    left: 0 !important;
+    top: auto !important;
+    bottom: 100% !important;
+    min-width: 100%;
+    margin-bottom: 0;
+    box-shadow: none;
+    border: none;
+    background: #fff;
+    z-index: 100;
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  aside.d-flex .sidebar-user-dropdown {
+    position: absolute;
+    left: calc(100% + 24px);
+    top: auto;
+    bottom: calc(0% + 12px);
+    min-width: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    background: #fff;
+    z-index: 100;
+    display: block;
+  }
 }

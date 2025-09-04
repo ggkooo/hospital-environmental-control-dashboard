@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/layout/sidebar.css') }}">
 
-<aside class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end aside-custom">
+<aside class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end aside-custom" id="sidebar">
     <nav class="flex-grow-1">
         <ul class="sidebar-nav">
             <li class="nav-item"><a href="/" class="nav-link{{ request()->is('/') ? ' active' : '' }}">{{ __('sidebar.home') }}</a></li>
@@ -30,6 +30,34 @@
             <a href="/settings" class="d-block mb-2 text-dark"><i class="bi bi-gear me-2"></i>{{  __('sidebar.settings') }}</a>
             <a href="/logout" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.leave') }}</a>
         </div>
+    </div>
+    <div class="sidebar-lang-form d-block d-md-none mt-3">
+        <form id="langFormSidebar" action="/lang/change" method="POST" style="display:inline-block; width:100%;">
+            @csrf
+            @php
+                $localeMap = [
+                    'ar' => ['name' => 'AR', 'flag' => 'sa'],
+                    'de' => ['name' => 'DE', 'flag' => 'de'],
+                    'en' => ['name' => 'EN', 'flag' => 'us'],
+                    'es' => ['name' => 'ES', 'flag' => 'es'],
+                    'fr' => ['name' => 'FR', 'flag' => 'fr'],
+                    'hi' => ['name' => 'HI', 'flag' => 'in'],
+                    'it' => ['name' => 'IT', 'flag' => 'it'],
+                    'ja' => ['name' => 'JA', 'flag' => 'jp'],
+                    'ko' => ['name' => 'KO', 'flag' => 'kr'],
+                    'pt-br' => ['name' => 'PT-BR', 'flag' => 'br'],
+                    'ru' => ['name' => 'RU', 'flag' => 'ru'],
+                    'zh' => ['name' => 'ZH', 'flag' => 'cn'],
+                ];
+                $supportedLocales = config('app.supported_locales', []);
+            @endphp
+            <select class="selectpicker" id="languageSelectSidebar" name="locale" style="width:100%;">
+                @foreach($supportedLocales as $locale)
+                    @php $info = $localeMap[$locale] ?? ['name' => strtoupper($locale), 'flag' => $locale]; @endphp
+                    <option value="{{ $locale }}" data-content='<span class="fi fi-{{ $info['flag'] }}"></span> {{ $info['name'] }}' {{ app()->getLocale() == $locale ? 'selected' : '' }}>{{ $info['name'] }}</option>
+                @endforeach
+            </select>
+        </form>
     </div>
 </aside>
 <script src="{{ asset('js/layout/sidebar.js') }}"></script>
