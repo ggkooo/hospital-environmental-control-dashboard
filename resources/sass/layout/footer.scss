@@ -13,3 +13,12 @@ footer {
   justify-content: center;
   margin-left: 225px;
 }
+
+@media (max-width: 767.98px) {
+  footer {
+    width: 100vw !important;
+    margin-left: 0 !important;
+    left: 0;
+    right: 0;
+  }
+}
