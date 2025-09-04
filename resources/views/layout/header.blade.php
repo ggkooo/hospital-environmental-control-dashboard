@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/layout/header.css') }}">
 
 <body>
-    <header class="header">
+    <header class="header d-flex align-items-center justify-content-between">
         <span class="header__logo"><img src="{{ asset('/assets/images/hospital-logo.png') }}" alt="Hospital Environmental Control"></span>
-        <div class="header__lang-form">
+        <div class="header__lang-form d-none d-md-block">
             <form id="langFormHeader" action="/lang/change" method="POST" style="display:inline-block;">
                 @csrf
                 @php
@@ -31,6 +31,9 @@
                 </select>
             </form>
         </div>
+        <button id="sidebarHamburger" class="btn btn-light d-md-none ms-auto" aria-label="Abrir menu" style="width:40px;height:40px;">
+            <i class="bi bi-list" style="font-size:1.5rem;"></i>
+        </button>
     </header>
     
     <script src="{{ asset('js/layout/header.js') }}"></script>
