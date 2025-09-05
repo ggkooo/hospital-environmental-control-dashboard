@@ -13,6 +13,12 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/temperature', function () {
+    return view('layout.base', [
+        'page' => 'temperature',
+    ]);
+});
+
 Route::post('/lang/change', function (\Illuminate\Http\Request $request) {
     $locale = $request->input('locale');
     $availableLocales = config('app.supported_locales', []);
