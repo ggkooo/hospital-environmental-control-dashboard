@@ -18,4 +18,8 @@ mix.js('resources/js/app.js', 'public/js')
     
     // HOME
     //.js('resources/js/home/home.js', 'public/js/home')
-    .sass('resources/sass/pages/home.scss', 'public/css/pages');
+    .sass('resources/sass/pages/home.scss', 'public/css/pages')
+    
+    // TEMPERATURE
+    .js('resources/js/pages/temperature.js', 'public/js/pages')
+    .sass('resources/sass/pages/temperature.scss', 'public/css/pages');

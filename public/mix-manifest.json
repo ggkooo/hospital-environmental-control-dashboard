@@ -3,9 +3,11 @@
     "/js/layout/sidebar.js": "/js/layout/sidebar.js",
     "/js/layout/header.js": "/js/layout/header.js",
     "/js/layout/footer.js": "/js/layout/footer.js",
+    "/js/pages/temperature.js": "/js/pages/temperature.js",
     "/css/pages/home.css": "/css/pages/home.css",
     "/css/layout/footer.css": "/css/layout/footer.css",
     "/css/layout/header.css": "/css/layout/header.css",
     "/css/layout/sidebar.css": "/css/layout/sidebar.css",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/pages/temperature.css": "/css/pages/temperature.css"
 }
