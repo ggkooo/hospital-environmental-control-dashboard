@@ -4,3 +4,8 @@ html, body {
     max-height: 100vh;
     overflow-x: hidden !important;
 }
+
+.content-scroll {
+    max-height: 80vh; // ajuste conforme necessário
+    overflow-y: auto;
+}
