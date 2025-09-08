@@ -22,4 +22,8 @@ mix.js('resources/js/app.js', 'public/js')
     
     // TEMPERATURE
     .js('resources/js/pages/temperature.js', 'public/js/pages')
-    .sass('resources/sass/pages/temperature.scss', 'public/css/pages');
+    .sass('resources/sass/pages/temperature.scss', 'public/css/pages')
+    
+    // HUMIDITY
+    .js('resources/js/pages/humidity.js', 'public/js/pages')
+    .sass('resources/sass/pages/humidity.scss', 'public/css/pages');
