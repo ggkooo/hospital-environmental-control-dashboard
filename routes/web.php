@@ -25,6 +25,12 @@ Route::get('/humidity', function () {
     ]);
 });
 
+Route::get('noise', function () {
+    return view('layout.base', [
+        'page' => 'noise',
+    ]);
+});
+
 Route::post('/lang/change', function (\Illuminate\Http\Request $request) {
     $locale = $request->input('locale');
     $availableLocales = config('app.supported_locales', []);
