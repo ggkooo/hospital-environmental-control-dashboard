@@ -5,7 +5,7 @@
         <ul class="sidebar-nav">
             <li class="nav-item"><a href="/" class="nav-link{{ request()->is('/') ? ' active' : '' }}">{{ __('sidebar.home') }}</a></li>
             <li class="nav-item"><a href="/temperature" class="nav-link{{ request()->is('temperature') ? ' active' : '' }}">{{ __('sidebar.temperature') }}</a></li>
-            <li class="nav-item"><a href="/humity" class="nav-link{{ request()->is('humity') ? ' active' : '' }}">{{ __('sidebar.humidity') }}</a></li>
+            <li class="nav-item"><a href="/humidity" class="nav-link{{ request()->is('humidity') ? ' active' : '' }}">{{ __('sidebar.humidity') }}</a></li>
             <li class="nav-item"><a href="/noise" class="nav-link{{ request()->is('noise') ? ' active' : '' }}">{{ __('sidebar.noise') }}</a></li>
             <li class="nav-item"><a href="/relatorio" class="nav-link{{ request()->is('relatorio') ? ' active' : '' }}">{{ __('sidebar.report') }}</a></li>
             <li class="nav-item dropdown">
