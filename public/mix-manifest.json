@@ -5,11 +5,13 @@
     "/js/layout/footer.js": "/js/layout/footer.js",
     "/js/pages/temperature.js": "/js/pages/temperature.js",
     "/js/pages/humidity.js": "/js/pages/humidity.js",
+    "/js/pages/noise.js": "/js/pages/noise.js",
     "/css/pages/home.css": "/css/pages/home.css",
     "/css/layout/footer.css": "/css/layout/footer.css",
     "/css/layout/header.css": "/css/layout/header.css",
     "/css/layout/sidebar.css": "/css/layout/sidebar.css",
     "/css/app.css": "/css/app.css",
+    "/css/pages/noise.css": "/css/pages/noise.css",
     "/css/pages/humidity.css": "/css/pages/humidity.css",
     "/css/pages/temperature.css": "/css/pages/temperature.css"
 }
