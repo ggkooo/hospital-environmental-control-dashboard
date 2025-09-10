@@ -30,4 +30,8 @@ mix.js('resources/js/app.js', 'public/js')
 
     // NOISE
     .js('resources/js/pages/noise.js', 'public/js/pages')
-    .sass('resources/sass/pages/noise.scss', 'public/css/pages');
+    .sass('resources/sass/pages/noise.scss', 'public/css/pages')
+
+    // AUTH
+    .js('resources/js/pages/auth.js', 'public/js/pages')
+    .sass('resources/sass/pages/auth.scss', 'public/css/pages');
