@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSensorData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
@@ -37,10 +39,6 @@ class ApiController extends Controller
             }
         }
 
-        // Apenas para teste: mostrar os dados recebidos no log
-        \Log::info('Dados recebidos na API:', $data);
-
-        // Salvar os dados recebidos em storage/app/api_data.json
         $dir = storage_path('app');
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -56,11 +54,11 @@ class ApiController extends Controller
         $result = file_put_contents($filePath, json_encode($existingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         if ($result === false) {
-            \Log::error('Falha ao salvar api_data.json em ' . $filePath);
+            Log::error('Falha ao salvar api_data.json em ' . $filePath);
             return response()->json(['error' => 'Falha ao salvar os dados no servidor.'], 500);
-        } else {
-            \Log::info('Dados salvos com sucesso em ' . $filePath);
         }
+
+        ProcessSensorData::dispatch();
 
         return response()->json(['success' => true]);
     }
