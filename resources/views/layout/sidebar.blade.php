@@ -28,7 +28,11 @@
         <div id="sidebarUserDropdown" class="sidebar-user-dropdown bg-white border shadow p-3">
             <a href="/profile" class="d-block mb-2 text-dark"><i class="bi bi-person me-2"></i>{{ __('sidebar.profile') }}</a>
             <a href="/settings" class="d-block mb-2 text-dark"><i class="bi bi-gear me-2"></i>{{  __('sidebar.settings') }}</a>
-            <a href="/logout" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.leave') }}</a>
+            <form method="POST" class="d-block" style="display:inline-block; width:100%;">
+                @csrf
+                <button type="submit" formaction="/logout" class="btn btn-link p-0 ms-3 text-danger text-decoration-none"><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.logout') }}</button>
+            </form>
+{{--            <a href="/logout" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.leave') }}</a>--}}
         </div>
     </div>
     <div class="sidebar-lang-form d-block d-md-none mt-3">
