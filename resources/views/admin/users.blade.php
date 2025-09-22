@@ -1,134 +1,16 @@
-<style>
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f8f9fa;
-        margin: 0;
-        padding: 0;
-    }
-    body .container {
-        height: 83%;
-        width: 95%;
-        max-width: none;
-        margin: auto;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        padding: 32px;
-    }
-    table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        background: #fff;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-        margin-top: 24px;
-    }
-    thead th {
-        background: #f1f3f6;
-        color: #333;
-        font-weight: 600;
-        padding: 14px 12px;
-        border-bottom: 2px solid #e3e6ea;
-        text-align: left;
-    }
-    th:last-child,
-    td[data-label="Ações"] {
-        width: 1%;
-        white-space: nowrap;
-        text-align: right;
-    }
-    tbody tr {
-        transition: background 0.2s;
-    }
-    tbody tr:hover {
-        background: #f6f8fa;
-    }
-    tbody td {
-        padding: 12px 12px;
-        border-bottom: 1px solid #f1f3f6;
-        color: #444;
-        font-size: 15px;
-    }
-    td[data-label="Ações"] {
-        text-align: right;
-        white-space: nowrap;
-    }
-    tbody tr:last-child td {
-        border-bottom: none;
-    }
-    h2.title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #2d3748;
-        margin-bottom: 12px;
-        letter-spacing: 0.5px;
-        text-align: center;
-        position: relative;
-        display: inline-block;
-    }
-    h2.title::after {
-        content: '';
-        display: block;
-        margin: 10px auto 0 auto;
-        width: 60%;
-        height: 4px;
-        border-radius: 2px;
-        background: linear-gradient(90deg, #4f8cff 0%, #38b2ac 100%);
-        opacity: 0.18;
-    }
-    @media (max-width: 700px) {
-        table, thead, tbody, th, td, tr {
-            display: block;
-        }
-        thead {
-            display: none;
-        }
-        tbody td {
-            position: relative;
-            padding-left: 50%;
-            min-height: 40px;
-        }
-        tbody td:before {
-            position: absolute;
-            left: 16px;
-            top: 12px;
-            width: 45%;
-            white-space: nowrap;
-            font-weight: 600;
-            color: #888;
-            content: attr(data-label);
-        }
-    }
-
-    .admin-row {
-        background: #d6e7fa !important;
-    }
-    .verified-row {
-        background: #d8ede0 !important;
-    }
-    .pending-row {
-        background: #ffeaea !important;
-    }
-    .blocked-row {
-        background: #fffad2 !important; /* amarelo bem suave */
-        color: #7c5e00 !important;
-    }
-</style>
-
-<body style="min-height: calc(100vh - 20vh);">
+<body class="users-page" style="min-height: calc(100vh - 20vh);">
+    <link rel="stylesheet" href="{{ mix('css/pages/admin/users.css') }}">
     <div class="container d-flex flex-column align-items-center mt-5">
         <h2 class="title">
-            User Management
+            {{ __('user-management.title') }}
         </h2>
         <table>
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Ações</th>
+                <th>{{ __('user-management.id') }}</th>
+                <th>{{ __('user-management.name') }}</th>
+                <th>{{ __('user-management.email') }}</th>
+                <th>{{ __('user-management.actions') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -155,30 +37,30 @@
                         </form>
                         <form action="{{ route('users.toggleAdmin', $user->id) }}" method="POST" style="display:inline-block;">
                             @csrf
-                            <button type="submit" class="btn btn-secondary btn-sm me-1" title="@if(isset($user->is_admin) && $user->is_admin) Remover Administrador @else Tornar Administrador @endif" @if($user->id == $loggedId) disabled @endif>
+                            <button type="submit" class="btn btn-secondary btn-sm me-1" title="@if(isset($user->is_admin) && $user->is_admin) {{ __('user-management.remove_admin') }} @else {{ __('user-management.add_admin') }} @endif" @if($user->id == $loggedId) disabled @endif>
                                 👑
                             </button>
                         </form>
                         @if(isset($user->is_blocked) && $user->is_blocked)
                             <form action="{{ route('users.unblock', $user->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
-                                <button type="submit" class="btn btn-secondary btn-sm me-1" title="Desbloquear Conta" @if($user->id == $loggedId) disabled @endif>🔓</button>
+                                <button type="submit" class="btn btn-secondary btn-sm me-1" title="{{ __('user-management.unblock') }}" @if($user->id == $loggedId) disabled @endif>🔓</button>
                             </form>
                         @else
                             <form action="{{ route('users.block', $user->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
-                                <button type="submit" class="btn btn-secondary btn-sm me-1" title="Bloquear Conta" @if($user->id == $loggedId) disabled @endif>🔒</button>
+                                <button type="submit" class="btn btn-secondary btn-sm me-1" title="{{ __('user-management.block') }}" @if($user->id == $loggedId) disabled @endif>🔒</button>
                             </form>
                         @endif
-                        <a href="#" class="btn btn-secondary btn-sm me-1 btn-edit-user-modal @if($user->id == $loggedId) disabled @endif" title="Editar"
+                        <a href="#" class="btn btn-secondary btn-sm me-1 btn-edit-user-modal @if($user->id == $loggedId) disabled @endif" title="{{ __('user-management.edit') }}"
                             data-user='{{ json_encode(["id"=>$user->id,"name"=>$user->name,"email"=>$user->email,"is_admin"=>$user->is_admin,"is_validated"=>$user->is_validated,"is_blocked"=>$user->is_blocked]) }}'
                             @if($user->id == $loggedId) tabindex="-1" aria-disabled="true" onclick="return false;" @endif>
                             ✏️
                         </a>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;" class="form-delete-user">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-secondary btn-sm" title="Excluir" @if($user->id == $loggedId) disabled @endif>🗑️</button>
+                            <button type="button" class="btn btn-secondary btn-sm btn-delete-user" title="{{ __('user-management.delete') }}" @if($user->id == $loggedId) disabled @endif>🗑️</button>
                         </form>
                     </td>
                 </tr>
@@ -187,7 +69,6 @@
         </table>
     </div>
 
-    <!-- Modal de Edição de Usuário -->
     <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -195,63 +76,54 @@
             @csrf
             @method('PATCH')
             <div class="modal-header">
-              <h5 class="modal-title" id="editUserModalLabel">Editar Usuário</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              <h5 class="modal-title" id="editUserModalLabel">{{ __('user-management.edit_user_modal') }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('user-management.close') }}"></button>
             </div>
             <div class="modal-body">
               <input type="hidden" name="user_id" id="editUserId">
               <div class="mb-3">
-                <label for="editUserName" class="form-label">Nome</label>
+                <label for="editUserName" class="form-label">{{ __('user-management.user_name_modal') }}</label>
                 <input type="text" class="form-control" id="editUserName" name="name" required>
               </div>
               <div class="mb-3">
-                <label for="editUserEmail" class="form-label">Email</label>
+                <label for="editUserEmail" class="form-label">{{ __('user-management.user_email_modal') }}</label>
                 <input type="email" class="form-control" id="editUserEmail" name="email" required>
               </div>
               <div class="mb-3">
-                <label for="editUserPassword" class="form-label">Nova Senha</label>
+                <label for="editUserPassword" class="form-label">{{ __('user-management.user_new_password_modal') }}</label>
                 <input type="password" class="form-control" id="editUserPassword" name="password" autocomplete="new-password">
               </div>
               <div class="mb-3">
-                <label for="editUserPasswordConfirmation" class="form-label">Confirmar Nova Senha</label>
+                <label for="editUserPasswordConfirmation" class="form-label">{{ __('user-management.user_confirm_new_password_modal') }}</label>
                 <input type="password" class="form-control" id="editUserPasswordConfirmation" name="password_confirmation" autocomplete="new-password">
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('user-management.cancel_modal') }}</button>
+              <button type="submit" class="btn btn-primary">{{ __('user-management.save_modal') }}</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
-    <script>
-    // Função para abrir a modal e preencher os dados do usuário
-    function openEditUserModal(user) {
-        document.getElementById('editUserId').value = user.id;
-        document.getElementById('editUserName').value = user.name;
-        document.getElementById('editUserEmail').value = user.email;
-        document.getElementById('editUserPassword').value = '';
-        document.getElementById('editUserPasswordConfirmation').value = '';
-        document.getElementById('editUserForm').action = '/admin/users/' + user.id;
-        var modal = new bootstrap.Modal(document.getElementById('editUserModal'));
-        modal.show();
-    }
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">{{ __('user-management.delete_modal') }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('user-management.close') }}"></button>
+          </div>
+          <div class="modal-body">
+              {{ __('user-management.delete_modal_contet') }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('user-management.cancel') }}</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">{{ __('user-management.delete') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    // Adiciona evento aos botões de editar
-    window.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.btn-edit-user-modal').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const user = JSON.parse(this.getAttribute('data-user'));
-                openEditUserModal(user);
-            });
-        });
-    });
-
-    document.getElementById('editUserForm').onsubmit = function(e) {
-        this.action = '/admin/users/' + document.getElementById('editUserId').value;
-    };
-    </script>
+    <script src="{{ mix('js/pages/admin/users.js') }}"></script>
 </body>
