@@ -8,6 +8,7 @@
             <li class="nav-item"><a href="/humidity" class="nav-link{{ request()->is('humidity') ? ' active' : '' }}">{{ __('sidebar.humidity') }}</a></li>
             <li class="nav-item"><a href="/noise" class="nav-link{{ request()->is('noise') ? ' active' : '' }}">{{ __('sidebar.noise') }}</a></li>
             <li class="nav-item"><a href="/relatorio" class="nav-link{{ request()->is('relatorio') ? ' active' : '' }}">{{ __('sidebar.report') }}</a></li>
+            @if(Auth::check() && Auth::user()->is_admin)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" aria-expanded="false">
                     {{ __('sidebar.administration') }}
@@ -18,17 +19,21 @@
                     <li><a class="dropdown-item" href="/admin/access">{{ __('sidebar.access_control') }}</a></li>
                 </ul>
             </li>
+            @endif
         </ul>
     </nav>
     <div class="sidebar-user d-flex align-items-center justify-content-between">
-        <div id="sidebarUserToggle" class="d-flex align-items-center sidebar-user-toggle">
+        <div id="sidebarUserToggle" class="d-flex align-items-center sidebar-user-toggle" style="cursor:pointer;">
             <img src="https://placehold.co/32x32" alt="User" class="rounded-circle" width="32" height="32">
             <span class="ms-2">Giordano Berwig</span>
         </div>
-        <div id="sidebarUserDropdown" class="sidebar-user-dropdown bg-white border shadow p-3">
+        <div id="sidebarUserDropdown" class="sidebar-user-dropdown bg-white border shadow p-3" style="display:none; pointer-events:none; opacity:0.5;">
             <a href="/profile" class="d-block mb-2 text-dark"><i class="bi bi-person me-2"></i>{{ __('sidebar.profile') }}</a>
             <a href="/settings" class="d-block mb-2 text-dark"><i class="bi bi-gear me-2"></i>{{  __('sidebar.settings') }}</a>
-            <a href="/logout" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.leave') }}</a>
+            <form method="POST" class="d-block" style="display:inline-block; width:100%;">
+                @csrf
+                <button type="submit" formaction="/logout" class="btn btn-link p-0 ms-3 text-danger text-decoration-none" disabled><i class="bi bi-box-arrow-right me-2"></i>{{ __('sidebar.logout') }}</button>
+            </form>
         </div>
     </div>
     <div class="sidebar-lang-form d-block d-md-none mt-3">
@@ -61,3 +66,24 @@
     </div>
 </aside>
 <script src="{{ asset('js/layout/sidebar.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('sidebarUserToggle');
+        const dropdown = document.getElementById('sidebarUserDropdown');
+        let enabled = false;
+        document.addEventListener('click', function(e) {
+            if (toggle.contains(e.target)) {
+                if (!enabled) {
+                    dropdown.style.pointerEvents = 'auto';
+                    dropdown.style.opacity = '1';
+                    const btn = dropdown.querySelector('button[type=submit]');
+                    if (btn) btn.disabled = false;
+                    enabled = true;
+                }
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            } else if (!dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+</script>
