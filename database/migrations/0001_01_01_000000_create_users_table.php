@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->default(false); // Indica se o usuário é administrador
+            $table->boolean('is_validated')->default(false); // Indica se a conta foi validada
             $table->rememberToken();
             $table->timestamps();
         });
