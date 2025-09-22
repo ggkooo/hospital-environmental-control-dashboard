@@ -1,0 +1,63 @@
+// Auth page styles
+.auth-bg {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    // Language selector section
+    .auth-lang-select {
+        position: absolute;
+        top: 24px;
+        right: 32px;
+        z-index: 10;
+        background: transparent;
+
+        #langFormAuth {
+            #languageSelectAuth {
+                // Style for language dropdown
+            }
+        }
+    }
+
+    // Form container
+    .auth-form-container {
+        background: #f6f8fa;
+        border-radius: 8px;
+        padding: 1rem;
+        width: 100%;
+        max-width: 400px;
+
+        .auth-logo {
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            max-width: 200px;
+        }
+
+        form {
+            // Login/Register form styles
+            .form-floating {
+                .form-control {
+                    // Input styles
+                }
+                label {
+                    // Label styles
+                }
+            }
+            .btn {
+                // Submit button styles
+            }
+        }
+    }
+
+    // Bootstrap select dropdown styling scoped to auth
+    .bootstrap-select {
+        .dropdown-menu {
+            .dropdown-item {
+                display: block !important;
+                visibility: visible !important;
+            }
+        }
+    }
+}
