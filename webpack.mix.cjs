@@ -34,4 +34,8 @@ mix.js('resources/js/app.js', 'public/js')
 
     // AUTH
     .js('resources/js/pages/auth.js', 'public/js/pages')
-    .sass('resources/sass/pages/auth.scss', 'public/css/pages');
+    .sass('resources/sass/pages/auth.scss', 'public/css/pages')
+
+    // USERS MANAGEMENT
+    .js('resources/js/pages/admin/users.js', 'public/js/pages/admin')
+    .sass('resources/sass/pages/admin/users.scss', 'public/css/pages/admin');
