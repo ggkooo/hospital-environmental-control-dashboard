@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/pages/temperature.css') }}">
-
 <body>
     <div class="container mb-3 mt-3">
         <h2>{{ __('temperature.title') }}</h2>
@@ -23,6 +22,7 @@
             <div class="col-auto">
                 <label for="aggregation" class="form-label">{{ __('temperature.unity') }}</label>
                 <select class="form-control" id="aggregation" name="aggregation">
+                    <option value="second">{{ __('temperature.unity_second') }}</option>
                     <option value="minute">{{ __('temperature.unity_minute') }}</option>
                     <option value="hour">{{ __('temperature.unity_hour') }}</option>
                     <option value="day">{{ __('temperature.unity_day') }}</option>
@@ -40,9 +40,7 @@
         <canvas id="temperatureChart" style="height:350px; min-width:600px;"></canvas>
     </div>
 
-    <!-- ChartJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- ChartJS Zoom/Pan Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
     <script>
         window.tempTexts = {
