@@ -178,8 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
             scales: {
                 y: {
                     beginAtZero: false,
-                    min: 21.5,
-                    max: 24.5,
+                    min: 20,
+                    max: 25,
                     title: {
                         display: true,
                         text: tempTexts.legendTemperature
