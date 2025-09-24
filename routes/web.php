@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TemperatureController;
 use App\Http\Middleware\IsAuthenticated;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -94,11 +95,7 @@ Route::get('/', function () {
     ]);
 })->middleware(IsAuthenticated::class)->name('home');
 
-Route::get('/temperature', function () {
-    return view('layout.base', [
-        'page' => 'temperature',
-    ]);
-})->middleware(IsAuthenticated::class);
+Route::get('/temperature', [TemperatureController::class, 'show'])->middleware(IsAuthenticated::class)->name('temperature.index');
 
 Route::get('/humidity', function () {
     return view('layout.base', [
